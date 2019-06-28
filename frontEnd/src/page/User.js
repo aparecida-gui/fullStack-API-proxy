@@ -75,10 +75,10 @@ class User extends React.Component {
             </div>
           ))
         ) : (
-          <div className="card w-75">
+          <div className="card w-75 card-explanation">
             <div className="card-body">
               <h5 className="card-title text-center">Como funciona essa página?</h5>
-              <p className="card-text text-md-left">
+              <p className="card-text text-center">
                 Para pesquisar um usuário no GitHub, por favor digite o nome de usuário da pessoa.
               </p>
             </div>
