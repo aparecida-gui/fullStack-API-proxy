@@ -7,9 +7,11 @@ router.get("/api", async (req, res, next) => {
   try {
     res.status(200).send("Seja Bem-Vindo.");
   } catch (error) {
-    res.status(404).send(error , "Não foi possível estabelecer conexão com o servidor.");
+    res
+      .status(404)
+      .send(error, "Não foi possível estabelecer conexão com o servidor.");
   }
-})
+});
 
 router.get("/api/users/:username/repos", async (req, res, next) => {
   try {
@@ -33,8 +35,13 @@ router.get("/api/users/:username/details", async (req, res, next) => {
     const result = await axios.get(searchUrl);
     res.json(result.data);
     next();
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (MessageError) {
+    res
+      .status(404)
+      .json({
+        MessageError: `Não foi encontrado o usuário ${username}. 
+                Por favor verifique o nome digitado.`
+      });
     next();
   }
 });
@@ -46,14 +53,14 @@ router.get("/api/users", async (req, res, next) => {
     const searchUrl = `${API_PATH}/users?since=${4}&per_page=5&rel=next`;
     console.log("searchUrl", searchUrl);
     const result = await axios.get(searchUrl);
-    
+
     res.json(result.data);
     next();
   } catch (error) {
     res.status(404).json({ message: error });
     next();
   }
-  console.log("query: " , req.query.searchUrl);
+  console.log("query: ", req.query.searchUrl);
 });
 
-module.exports = router
+module.exports = router;
