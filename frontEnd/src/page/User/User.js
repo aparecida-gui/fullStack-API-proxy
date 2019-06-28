@@ -57,7 +57,7 @@ class User extends React.Component {
                     {userDetail.location}
                   </p>
                 )}
-                <Link
+                <Link target="_blank" rel="noopener noreferrer"
                   to={{ pathname: `https://github.com/${userDetail.login}` }}
                   className="card-text"
                 >
