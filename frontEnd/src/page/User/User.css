@@ -1,13 +1,13 @@
-.card-user{
+.card-user {
   margin: 0 auto;
   padding: 15px;
-  height:576px;
+  height: 576px;
   width: 576px;
   min-height: 576px;
   min-width: 576px;
 }
 
-.card-user img{
+.card-user img {
   padding-top: 5px;
   height: 190px;
   width: 190px;
@@ -17,12 +17,12 @@
   margin-right: auto;
 }
 
-.navbar-user{
+.navbar-user {
   padding-bottom: 20px;
   min-width: 576px;
 }
 
-.card-explanation{
+.card-explanation {
   margin: 0 auto;
   padding: 20px;
   min-width: 576px;

@@ -1,6 +1,6 @@
 import React from "react";
-import NavbarSearch from "../components/NavBarSearch";
-import Button from "../components/Button";
+import NavbarSearch from "../../components/NavBarSearch";
+import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import "./User.css";
 import Moment from "react-moment";
@@ -12,7 +12,6 @@ class User extends React.Component {
   };
 
   handlerChange = e => {
-    const { searchUser } = this.state;
     this.setState({ searchUser: e.target.value });
   };
 
@@ -77,9 +76,12 @@ class User extends React.Component {
         ) : (
           <div className="card w-75 card-explanation">
             <div className="card-body">
-              <h5 className="card-title text-center">Como funciona essa página?</h5>
+              <h5 className="card-title text-center">
+                Como funciona essa página?
+              </h5>
               <p className="card-text text-center">
-                Para pesquisar um usuário no GitHub, por favor digite o nome de usuário da pessoa.
+                Para pesquisar um usuário no GitHub, por favor digite o nome de
+                usuário da pessoa.
               </p>
             </div>
           </div>

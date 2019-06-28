@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Users from "./page/Users";
-import User from "./page/User";
+import User from "./page/User/User";
 import Repository from "./page/Repository";
 
 function Routers() {
