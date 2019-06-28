@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavbarSearch = ({searchUser , onChange, onClick}) => (
+const NavbarSearch = ({ searchUser, onChange, onClick }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div className="mr-auto mt-2 mt-lg-0">
-      <ul className="navbar-nav">
+    <div className="mr-auto">
+      <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
           <Link className="navbar-brand" to={"/"}>
             GitHubApp
@@ -20,19 +20,30 @@ const NavbarSearch = ({searchUser , onChange, onClick}) => (
             User
           </Link>
         </li>
+      <form >
+        <div className="form-row align-items-center">
+          <div className="col-auto">
+            <input
+              type="search"
+              className="form-control my-2"
+              id="inlineFormInput"
+              placeholder="Search user"
+              value={searchUser}
+              onChange={onChange}
+            />
+          </div>
+          <div className="col-auto">
+            <button
+              type="submit"
+              onClick={onClick}
+              className="btn btn-outline-success my-2 my-sm-0" 
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        </form>
       </ul>
-      <form className="form-inline">
-        <input
-          className="form-control mr-sm-2"
-          type="search"
-          placeholder="Search user"
-          value={searchUser}
-          onChange={onChange}
-        />
-        <button className="btn btn-outline-success my-2 my-sm-0" 
-          type="submit" onClick={onClick}>Search
-        </button>
-      </form>
     </div>
   </nav>
 );
