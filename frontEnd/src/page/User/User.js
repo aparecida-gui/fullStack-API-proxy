@@ -1,9 +1,10 @@
 import React from "react";
-import NavbarSearch from "../../components/NavBarSearch";
-import Button from "../../components/Button";
-import { Link } from "react-router-dom";
 import "./User.css";
+import NavbarSearch from "../../components/NavBarSearch";
+import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import Button from "../../components/Button";
+import CardMessage from "../../components/CardMessage";
 
 class User extends React.Component {
   state = {
@@ -36,10 +37,12 @@ class User extends React.Component {
           />
         </div>
 
-        {user.length !== 0 ? (
+        {user.length !== 0 &&
+          !user.MessageError &&
           [user].map(userDetail => (
-            <div className="card mb-3 card-user" key={userDetail.id}>
+            <div className="card mb-3 card-user">
               <img
+                key={userDetail.id}
                 className="card-img-top"
                 src={userDetail.avatar_url}
                 alt={userDetail.name}
@@ -72,19 +75,22 @@ class User extends React.Component {
                 <Button>Repository</Button>
               </div>
             </div>
-          ))
-        ) : (
-          <div className="card w-75 card-explanation">
-            <div className="card-body">
-              <h5 className="card-title text-center">
-                Como funciona essa página?
-              </h5>
-              <p className="card-text text-center">
-                Para pesquisar um usuário no GitHub, por favor digite o nome de
-                usuário da pessoa.
-              </p>
-            </div>
-          </div>
+          ))}
+
+        {user.length === 0 && (
+          <CardMessage
+            titleMessage={"Como funciona essa página?"}
+            message={
+              "Para pesquisar um usuário no GitHub, por favor digite o nome de usuário da pessoa."
+            }
+          />
+        )}
+
+        {user.MessageError && (
+          <CardMessage
+            titleMessage={"Mensagem de Erro"}
+            message={user.MessageError}
+          />
         )}
       </div>
     );
