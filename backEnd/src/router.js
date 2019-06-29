@@ -16,7 +16,7 @@ router.get("/api", async (req, res, next) => {
 router.get("/api/users/:username/repos", async (req, res, next) => {
   try {
     username = req.params.username;
-    const searchUrl = `${API_PATH}/users/${username}/repos`;
+    const searchUrl = `${API_PATH}/users/${username}/repos?per_page=10`;
 
     const result = await axios.get(searchUrl);
     res.status(200).json(result.data);
