@@ -22,7 +22,8 @@ class User extends React.Component {
 
     fetch(`http://localhost:3030/api/users/${searchUser}/details`)
       .then(response => response.json())
-      .then(results => this.setState({ user: results }));
+      .then(results => this.setState({ user: results }))
+      .catch(error => error);
   };
 
   render() {
@@ -40,9 +41,8 @@ class User extends React.Component {
         {user.length !== 0 &&
           !user.MessageError &&
           [user].map(userDetail => (
-            <div className="card mb-3 card-user">
+            <div className="card mb-3 card-user" key={userDetail.id}>
               <img
-                key={userDetail.id}
                 className="card-img-top"
                 src={userDetail.avatar_url}
                 alt={userDetail.name}
@@ -57,7 +57,9 @@ class User extends React.Component {
                     {userDetail.location}
                   </p>
                 )}
-                <Link target="_blank" rel="noopener noreferrer"
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
                   to={{ pathname: `https://github.com/${userDetail.login}` }}
                   className="card-text"
                 >
@@ -72,7 +74,9 @@ class User extends React.Component {
                     <Moment format="DD/MM/YYYY">{userDetail.updated_at}</Moment>
                   </small>
                 </p>
-                <Button>Repository</Button>
+                <Link to={`/repositories/${searchUser}`}>
+                  <Button>Repositories</Button>
+                </Link>
               </div>
             </div>
           ))}
