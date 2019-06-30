@@ -1,0 +1,29 @@
+.card-repos{
+  margin: 0 auto 20px;
+  max-width: 740px;
+  height: 280px;
+  padding: 10px;
+}
+
+.card-repos div{
+  background-color: #B1B4BD;
+}
+
+.card-repos p small {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.card-repos h5 {
+  font-size: 19px;
+  font-weight: bold;
+  background-color: #FAF9F9;
+}
+
+.card-repos p{
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: bold;
+}
