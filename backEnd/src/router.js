@@ -13,16 +13,20 @@ router.get("/api", async (req, res, next) => {
   }
 });
 
-router.get("/api/users/:username/repos", async (req, res, next) => {
+router.get("/api/users/:username/repos/:numberPage", async (req, res, next) => {
+  console.log("ola");
   try {
     username = req.params.username;
-    const searchUrl = `${API_PATH}/users/${username}/repos?per_page=10`;
+    numberPage = req.params.numberPage;
+    const searchUrl = `${API_PATH}/users/${username}/repos?page=${numberPage}&per_page=10`;rel="last";
+    console.log("searchUrl: ", searchUrl);
+    console.log("numberPage: ", numberPage);
 
     const result = await axios.get(searchUrl);
     res.status(200).json(result.data);
     next();
-  } catch (error) {
-    res.status(404).json({ message: error });
+  } catch (messageErro) {
+    res.status(404).json({ messageErro: "Não foi possível encontrar os repos" });
     next();
   }
 });
