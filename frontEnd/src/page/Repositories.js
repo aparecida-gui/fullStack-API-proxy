@@ -11,8 +11,9 @@ class Repositories extends React.Component {
 
   componentDidMount() {
     const { match } = this.props;
+    let numberPage = 3;
 
-    fetch(`http://localhost:3030/api/users/${match.params.user}/repos`)
+    fetch(`http://localhost:3030/api/users/${match.params.user}/repos/${numberPage}`)
       .then(response => response.json())
       .then(results => this.setState({ repos: results }))
       .catch(error => error);
