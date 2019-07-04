@@ -3,21 +3,45 @@ import Navbar from "../components/Navbar";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import "./Repositories.css";
+import Pagination from "../components/Pagination";
 
 class Repositories extends React.Component {
   state = {
-    repos: []
+    repos: [],
+    numberPage: 1,
   };
 
   componentDidMount() {
-    const { match } = this.props;
-    let numberPage = 3;
-
-    fetch(`http://localhost:3030/api/users/${match.params.user}/repos/${numberPage}`)
-      .then(response => response.json())
-      .then(results => this.setState({ repos: results }))
-      .catch(error => error);
+    this.getPage();
   }
+
+  getPage = () => {
+    const { match } = this.props;
+    const { numberPage } = this.state;
+
+      fetch(`http://localhost:3030/api/users/${match.params.user}/repos/${numberPage}`)
+        .then(response => response.json())
+        .then(results => this.setState({ repos: results }))
+        .catch(error => error);
+  };
+
+  previousButton = () => {
+    let { numberPage } = this.state;
+
+    if (numberPage > 1) {
+      this.setState({ numberPage: numberPage + 1});
+
+      this.getPage();
+    }
+  };
+
+  nextButton = () => {
+    let { numberPage } = this.state;
+
+    this.setState({ numberPage:  numberPage + 1});
+
+    this.getPage();
+  };
 
   render() {
     const { repos } = this.state;
@@ -53,6 +77,11 @@ class Repositories extends React.Component {
             </div>
           </div>
         ))}
+        <Pagination
+          urlPrevious={this.previousButton}
+          urlNext={this.nextButton}
+        />
+        {console.log("numberPage: " , this.state.numberPage)}
       </div>
     );
   }
